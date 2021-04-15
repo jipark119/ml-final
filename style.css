@@ -3,11 +3,16 @@
     padding:0;
 }
 
+@font-face {
+    font-family: 'jeo';
+    src: url('Jeo-Regular.woff2') format('woff2'),
+         url('Jeo-Regular.woff') format('woff'),
+         url('Jeo-Regular.ttf') format('truetype');
+  }
 body{
     width: 100%;
-    font-family: 'Nanum Myeongjo', serif;
     color:black;
-    background:#CECECE;
+    background:white;
     padding:20px 20px;
 }
 #result{
@@ -21,7 +26,7 @@ a{
     color:black;
 }
 a:hover{
-    color:#CECECE;
+    color:blue;
     font-style: oblique;
 }
 #metLink a{
@@ -29,10 +34,14 @@ a:hover{
     font-style: oblique;
 }
 
+.artInfo{
+    padding: 20px 0px;
+    float:left;
+    width:250px;
+}
 .box{
     float: left;
-    width:80%;
-    border-top: 1px solid black;
+    width:90%;
     margin:40px 0px;
 
 }
@@ -49,10 +58,12 @@ a:hover{
     width:350px;
 }
 #tags-cloud {
-    position:relative;
-    width:100%;
-    height:720px;
-  }
+    top: 130px;
+    background: #CECECE;
+    position: absolute;
+    width: 100%;
+    height: 550;
+}
 
 .tag {
     border-radius:100%;
@@ -61,36 +72,71 @@ a:hover{
     width: 0px;
  }
  .aboutInfo{
-    font-size: 14px;
-    padding:0px 20px;
+     position:fixed;
+     bottom:20px;
+    font-family: 'jeo';
+    font-size: 12px;
+    padding:0px 10px;
     float: left;
-    width: 150px;  
+    width:90%;
  }
- .aboutsecond{
-    font-size: 14px;
-    padding:0px 20px;
+ #title{
+    margin-bottom: 10px;
+    border-bottom: 1px solid black;
+    font-family: 'Times New Roman';
     float: left;
-    width: 300px;  
+    font-size: 45px;
+    width: 90%;
+    padding-bottom: 10px;
+ }
+ #metResult{
+    width: 300px;
+    margin: 10px 20px;
+    float: left;
+    display: block;
+    padding-left: 20px;
+    border-left: 1px solid black;
+ }
+ #keyword{
+    width: 200px;
+    float: left;
+    font-family: 'Times New Roman';
+    float: left;
+    font-size: 45px;
+ }
+ #preview{
+    width: 300px;
+    margin: 10px 20px;
+    float: left;
+    display: block;
+ }
+img{
+    width: 300px;
+    margin: 10px 20px;
+    float: left;
+    display: block;
  }
  .menu{
-     padding:0px 0px;
+    font-family: 'Ballet', cursive;
     float: left;
-    width: 200px;
+    padding-right:20px;
+    width: 100%;
  }
 
  label{
-    font-size: 14px;
+    width: 100%;
+    font-size: 40px;
     float: left;
     text-align: left;
  }
 
-
+label:hover{
+    color:green;
+}
 
 
 #metLink{
+    color: blue;
     font-style: oblique;
 }
 
-#metResult{ 
-    width:100%;
-}

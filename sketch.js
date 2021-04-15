@@ -24,8 +24,10 @@ function imageUpload(files) {
     link = img.src
     img.width =width;
     img.height = height;
-    document.getElementById("preview").src = link;
-    document.getElementById("preview").style.display = "block";
+    let prevImg = document.createElement("IMG");
+    prevImg.src = link;
+    prevImg.style.display = "block";
+    document.querySelector('.menu').append(prevImg);
     make();
 }
 // async function make() 
@@ -51,7 +53,6 @@ function detect() {
   objectDetector.detect(img, function (err, results) {
     if (err) {
       alert("can't identify the image :(")
-      document.getElementById("keyword").innerHTML = "Unidentified";
       return
     }
     objects = results;
@@ -60,7 +61,11 @@ function detect() {
       //returns result
       result=objects[0].label;
       let keyword=result.charAt(0).toUpperCase() + result.slice(1);
-      document.getElementById("keyword").innerHTML = keyword;
+      let keyw = document.createElement("div");
+      keyw.id ="keyword";
+      keyw.innerHTML =keyword;
+      document.querySelector('.menu').append(keyw);
+      // document.getElementById("keyword").innerHTML = keyword;
       met();
     }
   });
@@ -77,21 +82,24 @@ function met(){
      }).then((data) => {
        let artwork=data.objectIDs[Math.floor(Math.random() * data.objectIDs.length)]; 
        artworkURL = "https://collectionapi.metmuseum.org/public/collection/v1/objects/" + artwork;
-       console.log(artworkURL)
        //fetch api for artwork
        fetch(artworkURL).then((response) => {
         return response.json();
       }).then((artworkData) => {
         let imgLink = artworkData.primaryImageSmall;
-        document.getElementById("metResult").src = imgLink;
-        document.getElementById("title").innerHTML =artworkData.title;
-        document.getElementById("artist").innerHTML =artworkData.artistDisplayName;
         let period =artworkData.period;
         let medium=artworkData.medium;
-        document.getElementById("info").innerHTML = period+"<br>"+medium;
-        document.getElementById("metLink").href = artworkData.objectURL;
-        document.getElementById("metLink").innerHTML = "Learn More";
 
+        // document.getElementById("metResult").src = imgLink ;
+
+        let metResult = document.createElement("IMG");
+        metResult.src = imgLink ;
+        document.querySelector('.menu').append(metResult);
+
+        let metInfo= document.createElement("div");
+        metInfo.id ="title";
+        metInfo.innerHTML =artworkData.title + ", "+ artworkData.artistDisplayName+ "<br>"+period+" "+ medium+ "<a style='font-style: italic;color:#CECECE;' href='"+artworkData.objectURL+"'> Learn More</a>"  ;
+        document.querySelector('.menu').append(metInfo);
       });
 
      });

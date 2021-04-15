@@ -4,7 +4,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Ballet&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 	<title>Met Project</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -13,56 +13,35 @@
 </head>
 
 <body>
-  <p class="menu" style="text-align:center;font-size: 18px;">Find your image from the MET<br><a href="search.html" style="cursor: pointer;text-decoration: underline;">Start</a></p>
-	<div id="tags-cloud">
-		<img class="tag" src="images/1.png"/>
-		<img class="tag" src="images/2.png"/>
-		<img class="tag" src="images/3.png"/>
-		<img class="tag" src="images/5.png"/>
-		<img class="tag" src="images/6.png"/>
-	</div>
+    
+    <div class="menu">
+        <input id="input" style="display:none;" type="file" accept="image/*" onchange="imageUpload(this.files)">
+        <label for="input" style="cursor:pointer;">Upload</label>
+    </div>
+    <!-- <div class="aboutInfo">
+		Upload image of your choice. Once it identifies your image, 
+        it goes through thousands of artworks in the MET database and 
+        matches the image to a collection of similar painting.
+        
+    </div> -->
 
-	<script>
-		function touching(margin) {
-		var result= false;
-		$('.tag').each(function() {
-			var t1= $(this),
-				t1radius= t1.width()/2,
-				t1x= t1.offset().left + t1radius,
-				t1y= t1.offset().top  + t1radius;
 
-			$('.tag').not(t1).each(function() {
-			var t2= $(this);
-				t2radius= t2.width()/2,
-				t2x= t2.offset().left + t2radius,
-				t2y= t2.offset().top  + t2radius,
-				dist= Math.sqrt((t2x-t1x)*(t2x-t1x) + (t2y-t1y)*(t2y-t1y));
-			
-			if(t1radius && t2radius && dist<t1radius+t2radius+margin) {
-				result= true;
-			}
-			})
-		});
-		return result;
-		} //touching
 
-		$('.tag').each(function(idx) {
-		do {
-			var container= $(this).parent(),
-				diam= 230,
-				top = Math.round(Math.random() * (container.height() - diam)),
-				left= Math.round(Math.random() * (container.width()  - diam)),
-				bg= '#'+(Math.random()*128+32<<0).toString(16)+(Math.random()*128+32<<0).toString(16)+(Math.random()*128+32<<0).toString(16);
+    
+    <div class="box">
+        <!-- input field-->
+            <p id="keyword"></p> 
+			<div id="preview"></div>
+           
 
-			$(this)
-			.css({
-				top         : top,
-				left        : left,
-				width       : diam
-			})
-		} while(touching(20));
-		});
-	</script>
+		<!-- result field -->
+		<img id="metResult"></img>
+ 			<div id="title"></div>
+            <div id="artist"></div>
+            <div id="info"></div>
+			<a id="metLink" style="cursor: pointer;"></a>
+    </div> <!-- box -->
+    
 </body>
 
 </html>
